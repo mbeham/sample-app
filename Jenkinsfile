@@ -17,6 +17,7 @@ mvn package'''
       }
       steps {
         sh "${PACKER_HOME}/packer validate packer/vagrant.json"
+        sh "${PACKER_HOME}/packer build packer/vagrant.json"
       }
     }
   }
