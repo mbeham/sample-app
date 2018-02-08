@@ -25,6 +25,7 @@ mvn package'''
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           sh "${PACKER_HOME}/packer validate packer/azure.json"
           sh "env"
+          sh 'echo $PACKER_CLIENT_SECRET'
           sh "${PACKER_HOME}/packer build packer/azure.json"
         }
       }
