@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+    packer 'packer'
+  }
   stages {
     stage('build') {
       steps {
@@ -8,12 +11,12 @@ pipeline {
 
 mvn package'''
         }
-        
+
       }
     }
     stage('packer') {
       steps {
-        tool(name: 'packer', type: 'packer')
+        sh 'packer validate packer/vagrant.json'
       }
     }
   }
