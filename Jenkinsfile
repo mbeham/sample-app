@@ -15,9 +15,11 @@ mvn package'''
       environment{
         PACKER_HOME = tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
       }
-      steps {
-        sh "${PACKER_HOME}/packer validate packer/vagrant.json"
-        sh "${PACKER_HOME}/packer build packer/vagrant.json"
+      steps
+        wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
+          sh "${PACKER_HOME}/packer validate packer/vagrant.json"
+          sh "${PACKER_HOME}/packer build packer/vagrant.json"
+        }
       }
     }
   }
