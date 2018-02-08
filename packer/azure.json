@@ -18,8 +18,17 @@
 
     "vm_size": "Standard_A2"
   }],
-  "provisioners": [{
+  "provisioners": [
+  {
+  "type": "file",
+  "source": "target/gs-spring-boot-0.1.0.jar",
+  "destination": "/tmp/gs-spring-boot.jar"
+},
+    {
     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "scripts": [
+      "scripts/deploy.sh"
+    ],
     "inline": [
       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
     ],
