@@ -13,7 +13,7 @@ mvn package'''
     }
     stage('packer') {
       tools {
-        tool(name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation')
+        name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
       }
       environment{
         PACKER_HOME = tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
