@@ -8,11 +8,13 @@ pipeline {
 
 mvn package'''
         }
+        
       }
     }
     stage('packer') {
       steps {
         sh 'packer validate packer/vagrant.json'
+        tool 'packer'
       }
     }
   }
