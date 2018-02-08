@@ -1,14 +1,16 @@
 #/bin/bash -eux
 
 mkdir /var/gs-spring-boot/
-cp /tmp/gs-spring-boot.jar /var/gs-spring-boot/
+mv /tmp/gs-spring-boot.jar /var/gs-spring-boot/
+useradd spring-boot
+chown spring-boot:spring-boot /var/gs-spring-boot/gs-spring-boot.jar
 cat <<EOF > /etc/systemd/system/gs-spring-boot.service;
 [Unit]
 Description=gs-spring-boot
 After=syslog.target
 
 [Service]
-User=myapp
+User=spring-boot
 ExecStart=/var/gs-spring-boot/gs-spring-boot.jar
 SuccessExitStatus=143
 
