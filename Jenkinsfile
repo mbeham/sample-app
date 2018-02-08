@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools {
-    biz.neustar.jenkins.plugins.packer.PackerInstallation 'packer'
+    Packer 'packer-1.1.3'
   }
   stages {
     stage('build') {
