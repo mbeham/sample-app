@@ -13,9 +13,10 @@ mvn package'''
     }
     stage('packer') {
       steps {
-        tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'{
-                  sh 'packer validate packer/vagrant.json'
+        environment{
+          PACKER_HOME = tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
         }
+        sh '$PACHKER_HOME/packer validate packer/vagrant.json'
       }
     }
   }
