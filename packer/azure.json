@@ -27,6 +27,7 @@
     {
     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
     "scripts": [
+      "packer/scripts/java.sh",
       "packer/scripts/deploy.sh",
       "packer/scripts/deprovision.sh"
     ],
