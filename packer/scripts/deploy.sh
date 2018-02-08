@@ -1,4 +1,4 @@
-#/bin/bash
+#/bin/bash -eux
 
 mkdir /var/gs-spring-boot/
 cp /tmp/gs-spring-boot.jar /var/gs-spring-boot/
