@@ -12,6 +12,9 @@ mvn package'''
       }
     }
     stage('packer') {
+      tools {
+        tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
+      }
       environment{
         PACKER_HOME = tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
         PACKER_SUBSCRIPTION_ID="fcc1ad01-b8a5-471c-812d-4a42ff3d6074"
@@ -23,9 +26,7 @@ mvn package'''
       }
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
-          sh "${PACKER_HOME}/packer validate packer/azure.json"
-          sh "env"
-          sh 'echo "PACKER_SUBSCRIPTION_ID=$PACKER_SUBSCRIPTION_ID PACKER_CLIENT_ID=$PACKER_CLIENT_ID PACKER_CLIENT_SECRET=$PACKER_CLIENT_SECRET PACKER_LOCATION=$PACKER_LOCATION PACKER_TENANT_ID=$PACKER_TENANT_ID PACKER_OBJECT_ID=$PACKER_OBJECT_ID"  > /tmp/pcs'
+          sh "packer validate packer/azure.json"
           sh "${PACKER_HOME}/packer build packer/azure.json"
         }
       }
