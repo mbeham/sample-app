@@ -13,8 +13,9 @@ mvn package'''
     }
     stage('packer') {
       steps {
-        tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
-        sh 'packer validate packer/vagrant.json'
+        tool name: 'packer-1.1.3', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'{
+                  sh 'packer validate packer/vagrant.json'
+        }
       }
     }
   }
