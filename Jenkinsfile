@@ -38,22 +38,17 @@ mvn package'''
         }
       }
     }
-    stage('terraform-plan') {
+    stage('terraform') {
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           dir('terraform') {
-            sh "${TERRAFORM_HOME}/terraform init -input=false"
-            def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -input=false", returnStatus: true)
+            script {
+              sh "${TERRAFORM_HOME}/terraform init -input=false"
+              def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -input=false", returnStatus: true)
+              if ( TF_APPLY_STATUS == 2 ) {
+                sh "${TERRAFORM_HOME}/terraform apply -input=false -auto-approve tfplan"
+              }
           }
-        }
-      }
-    }
-    stage('terraform-apply') {
-      when { environment name: 'TF_APPLY_STATUS', value: '2'}
-      steps {
-        wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
-          dir('terraform') {
-            sh "${TERRAFORM_HOME}/terraform apply -input=false -auto-approve tfplan"
           }
         }
       }
