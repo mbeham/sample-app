@@ -3,3 +3,5 @@ variable "location" {
 }
 
 variable "user" {}
+
+variable "password" {}

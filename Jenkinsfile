@@ -39,6 +39,7 @@ mvn package'''
         ARM_TENANT_ID = "787717a7-1bf4-4466-8e52-8ef7780c6c42"
         ARM_ENVIRONMENT = "public"
         TF_VAR_user = "gschoeni"
+        TF_VAR_password = credentials('283cce48-9ad2-42b5-80b7-61975c1bfdc5')
       }
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
