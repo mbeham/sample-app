@@ -44,7 +44,7 @@ mvn package'''
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           dir('terraform') {
             script {
-              sh "${TERRAFORM_HOME}/terraform init -input=false"
+              sh "${TERRAFORM_HOME}/terraform init -input=false -backend-config=\"key=${TF_VAR_user}.terraform.tfstate\""
               def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -detailed-exitcode -input=false", returnStatus: true)
               sh "echo ${TF_APPLY_STATUS}"
               if ( TF_APPLY_STATUS == 2 ) {

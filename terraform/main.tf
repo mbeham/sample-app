@@ -7,7 +7,6 @@ terraform {
     resource_group_name = "jambitiac"
     storage_account_name = "jambitiac"
     container_name       = "tfstate"
-    key                  = "${ var.user }.terraform.tfstate"
   }
 }
 
