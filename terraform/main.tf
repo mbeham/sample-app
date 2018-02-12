@@ -4,6 +4,7 @@ provider "azurerm" {
 
 terraform {
   backend "azurerm" {
+    resource_group_name = "jambitiac"
     storage_account_name = "jambitiac"
     container_name       = "tfstate"
     key                  = "${ var.user }.terraform.tfstate"
