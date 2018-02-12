@@ -43,7 +43,6 @@ mvn package'''
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           dir('terraform') {
-            deleteDir()
             script {
               sh "${TERRAFORM_HOME}/terraform init -input=false -backend-config=\"key=${TF_VAR_user}.terraform.tfstate\""
               def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -detailed-exitcode -input=false", returnStatus: true)
@@ -55,6 +54,12 @@ mvn package'''
           }
         }
       }
+    }
+  }
+  post {
+    always {
+      echo 'One way or another, I have finished'
+      deleteDir() /* clean up our workspace */
     }
   }
 }
