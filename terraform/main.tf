@@ -23,7 +23,7 @@ data "azurerm_image" "sample_app" {
 resource "azurerm_public_ip" "sample_app" {
   name                         = "sample_app_pip"
   location                     = "${ var.location }"
-  resource_group_name          = "${azurerm_resource_group.test.name}"
+  resource_group_name          = "${azurerm_resource_group.sample_app.name}"
   public_ip_address_allocation = "static"
 }
 
