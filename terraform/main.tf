@@ -55,7 +55,7 @@ resource "azurerm_virtual_machine" "sample_app" {
   delete_os_disk_on_termination = true
 
   storage_image_reference {
-    id = "${azurerm_image.sample_app.id}"
+    id = "${data.azurerm_image.sample_app.id}"
   }
 
   storage_os_disk {
