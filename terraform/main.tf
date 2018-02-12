@@ -20,6 +20,13 @@ data "azurerm_image" "sample_app" {
   resource_group_name = "jambitiac"
 }
 
+resource "azurerm_public_ip" "sample_app" {
+  name                         = "sample_app_pip"
+  location                     = "${ var.location }"
+  resource_group_name          = "${azurerm_resource_group.test.name}"
+  public_ip_address_allocation = "static"
+}
+
 resource "azurerm_virtual_network" "sample_app" {
   name                = "sample_app_vn"
   address_space       = ["10.0.0.0/16"]
@@ -43,6 +50,7 @@ resource "azurerm_network_interface" "sample_app" {
     name                          = "sampleappconfiguration1"
     subnet_id                     = "${azurerm_subnet.sample_app.id}"
     private_ip_address_allocation = "dynamic"
+    public_ip_address_id = "${azurerm_public_ip.sample_app.id}"
   }
 }
 
