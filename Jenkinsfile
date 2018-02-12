@@ -44,6 +44,7 @@ mvn package'''
           dir('terraform') {
             sh "${TERRAFORM_HOME}/terraform init -input=false"
             sh "${TERRAFORM_HOME}/terraform plan -out=tfplan -input=false"
+            sh "${TERRAFORM_HOME}/terraform apply -input=false -auto-approve tfplan"
           }
         }
       }
