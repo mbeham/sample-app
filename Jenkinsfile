@@ -43,7 +43,7 @@ mvn package'''
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           dir('terraform') {
             sh "${TERRAFORM_HOME}/terraform init -input=false"
-            TF_APPLY_STATUS = sh "${TERRAFORM_HOME}/terraform plan -out=tfplan -input=false" returnStatus: true
+            def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -input=false", returnStatus: true)
           }
         }
       }
