@@ -1,13 +1,5 @@
 pipeline {
   agent any
-  environment {
-    TERRAFORM_HOME = tool name: 'terraform-0.11.3'
-    ARM_SUBSCRIPTION_ID = "fcc1ad01-b8a5-471c-812d-4a42ff3d6074"
-    ARM_CLIENT_ID = "262d2df5-a043-458a-9d0d-27a734962cd9"
-    ARM_CLIENT_SECRET = credentials('283cce48-9ad2-42b5-80b7-61975c1bfdc5')
-    ARM_TENANT_ID = "787717a7-1bf4-4466-8e52-8ef7780c6c42"
-    ARM_ENVIRONMENT = "public"
-  }
   stages {
     stage('build') {
       when { not { branch 'feature/terraform' } }
@@ -39,6 +31,15 @@ mvn package'''
       }
     }
     stage('terraform') {
+      environment {
+        TERRAFORM_HOME = tool name: 'terraform-0.11.3'
+        ARM_SUBSCRIPTION_ID = "fcc1ad01-b8a5-471c-812d-4a42ff3d6074"
+        ARM_CLIENT_ID = "262d2df5-a043-458a-9d0d-27a734962cd9"
+        ARM_CLIENT_SECRET = credentials('283cce48-9ad2-42b5-80b7-61975c1bfdc5')
+        ARM_TENANT_ID = "787717a7-1bf4-4466-8e52-8ef7780c6c42"
+        ARM_ENVIRONMENT = "public"
+        TF_VAR_user = "gschoeni"
+      }
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           dir('terraform') {
