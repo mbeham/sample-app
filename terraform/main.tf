@@ -23,7 +23,7 @@ data "azurerm_image" "sample_app" {
 resource "azurerm_virtual_network" "sample_app" {
   name                = "sample_app_vn"
   address_space       = ["10.0.0.0/16"]
-  location            = "West US 2"
+  location            = "${ var.location }"
   resource_group_name = "${azurerm_resource_group.sample_app.name}"
 }
 
