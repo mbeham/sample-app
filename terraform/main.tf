@@ -25,6 +25,7 @@ resource "azurerm_public_ip" "sample_app" {
   location                     = "${ var.location }"
   resource_group_name          = "${azurerm_resource_group.sample_app.name}"
   public_ip_address_allocation = "static"
+  domain_name_label = "${ var.user }-host"
 }
 
 resource "azurerm_virtual_network" "sample_app" {
