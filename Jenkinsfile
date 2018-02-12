@@ -53,7 +53,7 @@ mvn package'''
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
           dir('terraform') {
-            TF_APPLY_STATUS = sh "${TERRAFORM_HOME}/terraform apply -input=false -auto-approve tfplan" returnStatus: true
+            sh "${TERRAFORM_HOME}/terraform apply -input=false -auto-approve tfplan"
           }
         }
       }
