@@ -27,7 +27,7 @@ mvn package'''
           sh "${PACKER_HOME}/packer build packer/azure.json"
         }
       }
-    },
+    }
     stage('terraform') {
       environment{
         TERRAFORM_HOME = tool name: 'terraform-0.11.3'
