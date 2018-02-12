@@ -44,7 +44,7 @@ mvn package'''
           dir('terraform') {
             script {
               sh "${TERRAFORM_HOME}/terraform init -input=false"
-              def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -input=false", returnStatus: true)
+              def TF_APPLY_STATUS = sh (script: "${TERRAFORM_HOME}/terraform plan -out=tfplan -detailed-exitcode -input=false", returnStatus: true)
               sh "echo ${TF_APPLY_STATUS}"
               if ( TF_APPLY_STATUS == 2 ) {
                 sh "${TERRAFORM_HOME}/terraform apply -input=false -auto-approve tfplan"
