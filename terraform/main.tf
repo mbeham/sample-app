@@ -60,7 +60,7 @@ resource "azurerm_virtual_machine" "sample_app" {
   location              = "${ var.location }"
   resource_group_name   = "${azurerm_resource_group.sample_app.name}"
   network_interface_ids = ["${azurerm_network_interface.sample_app.id}"]
-  vm_size               = "Standard_A1_v2"
+  vm_size               = "Standard_A0_v2"
   delete_os_disk_on_termination = true
 
   storage_image_reference {
