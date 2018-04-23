@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "sample_app" {
 }
 
 data "azurerm_image" "sample_app" {
-  name                = "1518428281"
+  name                = "${ var.user }-${ var.image_id }"
   resource_group_name = "jambitiac"
 }
 

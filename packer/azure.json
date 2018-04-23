@@ -6,9 +6,8 @@
     "client_secret": "{{ user `client_secret` }}",
     "location": "{{ user `location` }}",
     "tenant_id": "{{ user `tenant_id` }}",
-    "object_id": "{{ user `object_id` }}",
 
-    "managed_image_name": "{{ user `image_postfix` }}",
+    "managed_image_name": "{{ user `packer_image_name` }}",
     "managed_image_resource_group_name": "jambitiac",
 
     "os_type": "Linux",
@@ -41,6 +40,6 @@
     "client_secret": "{{ env `PACKER_CLIENT_SECRET` }}",
     "location": "{{ env `PACKER_LOCATION` }}",
     "tenant_id": "{{ env `PACKER_TENANT_ID` }}",
-    "object_id": "{{ env `PACKER_OBJECT_ID` }}"
+    "packer_image_name": "{{ env `PACKER_IMAGE_NAME` }} "
   }
 }

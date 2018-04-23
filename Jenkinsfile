@@ -22,6 +22,7 @@ mvn package'''
         PACKER_LOCATION = "westeurope"
         PACKER_TENANT_ID = "787717a7-1bf4-4466-8e52-8ef7780c6c42"
         PACKER_OBJECT_ID = "56e89fa0-e748-49f4-9ff0-0d8b9e3d4057"
+        PACKER_IMAGE_NAME = "gschoeni-${env.BUILD_ID}"
       }
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
@@ -40,6 +41,7 @@ mvn package'''
         ARM_ENVIRONMENT = "public"
         TF_VAR_user = "gschoeni"
         TF_VAR_password = credentials('283cce48-9ad2-42b5-80b7-61975c1bfdc5')
+        TF_VAR_build_id = "${env.BUILD_ID}"
       }
       steps {
         wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {

@@ -5,3 +5,5 @@ variable "location" {
 variable "user" {}
 
 variable "password" {}
+
+variable "image_id" {} 
