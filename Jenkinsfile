@@ -8,6 +8,8 @@ pipeline {
 
 mvn package'''
         }
+
+        echo 'awesome!!!'
       }
     }
   }
