@@ -6,4 +6,4 @@ variable "user" {}
 
 variable "password" {}
 
-variable "image_id" {} 
+variable "build_id" {}
